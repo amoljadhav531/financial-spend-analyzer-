@@ -24,7 +24,7 @@ public class CustomerDetailsService {
 		System.out.println();
 		if(
 				customerDetailsDto.getCustomerName().equals("") || customerDetailsDto.getDob().toString().equals("") || customerDetailsDto.getEmail().equals("") || 
-				customerDetailsDto.getGender().equals("") || customerDetailsDto.getMobile_number().equals("") || customerDetailsDto.getPanNumber().equals("") 
+				customerDetailsDto.getGender().equals("") || customerDetailsDto.getMobileNumber().equals("") || customerDetailsDto.getPanNumber().equals("") 
 				)
 		{
 			System.out.println("BBBB");
