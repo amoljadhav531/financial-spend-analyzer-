@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.analyzer.dto.MonthlyStatementDto;
+import com.hcl.analyzer.dto.MonthyStatement;
 import com.hcl.analyzer.entity.CustomerDetails;
-import com.hcl.analyzer.entity.MonthyStatement;
-import com.hcl.analyzer.exception.InvalidInputException;
 import com.hcl.analyzer.exception.ResourceNotFoundException;
 import com.hcl.analyzer.repository.CustomerDetailsRepository;
 import com.hcl.analyzer.repository.TransactionDetailRepository;

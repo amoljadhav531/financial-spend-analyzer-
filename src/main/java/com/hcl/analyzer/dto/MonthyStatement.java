@@ -1,4 +1,4 @@
-package com.hcl.analyzer.entity;
+package com.hcl.analyzer.dto;
 
 import lombok.Data;
 
