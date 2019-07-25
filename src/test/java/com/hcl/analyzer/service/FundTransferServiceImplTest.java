@@ -81,10 +81,9 @@ public class FundTransferServiceImplTest {
 		Mockito.when(customerDetailsRepository.findByCustomerId(1L)).thenReturn(customerDetails);
 		Mockito.when(transactionDetailRepository.save(transactionDetail)).thenReturn(transactionDetail);
 		
-		ResponseData data = fundTransferServiceImpl.fundTransfer(fundTransferDTO);
+		ResponseData actual = fundTransferServiceImpl.fundTransfer(fundTransferDTO);
 		
-		assertTrue(true);
-		//fail("Not yet implemented");
+		assertEquals("OTP is being sent on your mobile number and on email id", actual.getMessage());
 	}
 
 }
