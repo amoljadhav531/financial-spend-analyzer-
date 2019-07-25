@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -17,8 +19,6 @@ public class TransactionDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long transactionId;
 	
-	private String customerId;
-
 	private LocalDate transactionDate;
 	
 	private String transactionType;
@@ -32,4 +32,8 @@ public class TransactionDetail {
 	private Double availableBalance;
 	
 	private String transactionDescription;
+	
+	@ManyToOne
+	@JoinColumn(name = "customer_id")
+	private CustomerDetails customerDetails;
 }

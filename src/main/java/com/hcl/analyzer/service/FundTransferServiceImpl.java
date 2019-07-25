@@ -30,8 +30,10 @@ public class FundTransferServiceImpl implements FundTransferService {
 		
 		CustomerDetails customerDetails = customerDetailsRepository.findByCustomerId(fundTransferDTO.getCustomerId());
 		
-		if(fundTransferDTO.getTransactionType().equalsIgnoreCase("CREDIT"))
+		if(fundTransferDTO.getTransactionType().equalsIgnoreCase("CREDIT")) {
 			transactionDetail.setAvailableBalance(customerDetails.getAccountBalance()+fundTransferDTO.getTransferAmount());
+			customerDetails.setAccountBalance(customerDetails.getAccountBalance()+fundTransferDTO.getTransferAmount());
+		}
 		else
 			if(fundTransferDTO.getTransactionType().equalsIgnoreCase("DEBIT"))
 				if(customerDetails.getAccountBalance()<=0)
@@ -39,12 +41,14 @@ public class FundTransferServiceImpl implements FundTransferService {
 				else
 					if(customerDetails.getAccountBalance()<fundTransferDTO.getTransferAmount())
 						throw new ResourceNotFoundException("Your account doesn't have enough balance. You have "+customerDetails.getAccountBalance()+" balance only.");
-					else
+					else {
 						transactionDetail.setAvailableBalance(customerDetails.getAccountBalance()-fundTransferDTO.getTransferAmount());
+						customerDetails.setAccountBalance(customerDetails.getAccountBalance()-fundTransferDTO.getTransferAmount());
+					}
 		transactionDetail.setTransactionAmount(fundTransferDTO.getTransferAmount());
 		transactionDetail.setTransactionDate(LocalDate.now());
-		transactionDetail.setCustomerId(fundTransferDTO.getCustomerId());
-		transactionDetail.setTransactionOtp(9898);
+		transactionDetail.setCustomerDetails(customerDetails);
+		transactionDetail.setTransactionOtp(generateOtp());
 		transactionDetail.setTransactionStatus("Pending");
 		transactionDetail.setTransactionType(fundTransferDTO.getTransactionType());
 		
@@ -52,11 +56,13 @@ public class FundTransferServiceImpl implements FundTransferService {
 		
 		ResponseData responseData = new ResponseData();
 		responseData.setHttpStatus(HttpStatus.OK);
-		responseData.setMessage("");
+		responseData.setMessage("OTP is being sent on your mobile number and on email id");
 		
 		return responseData;
 	}
 	
-
+	private int generateOtp() {
+		return (int) (Math.random() * 1000 + 33000L);
+		}
 	
 }
