@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +23,13 @@ import com.hcl.analyzer.service.TransactionHistoryService;
 @CrossOrigin
 public class TransactionController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(TransactionController.class);
 	@Autowired
 	private TransactionHistoryService transactionHistoryService;
 	
 	@GetMapping("/monthlyhistory/{customerId}")
 	public ResponseEntity<List<MonthlyStatementDto>> getMonthlyStatement(@PathVariable("customerId") @NotNull Long customerId){
+		logger.debug("entering into getMonthlyStatement==============>>>>>>>>>>>>>>");
 		return new ResponseEntity<>(transactionHistoryService.getMonthlyStatement(customerId), HttpStatus.ACCEPTED);
 	}
 }
