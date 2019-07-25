@@ -1,10 +1,9 @@
 package com.hcl.analyzer.service;
 
-import org.springframework.stereotype.Service;
+import com.hcl.analyzer.dto.FundTransferDTO;
 
-@Service
-public class FundTransferService {
+public interface FundTransferService {
 
-	
+	public String fundTransfer(FundTransferDTO fundTransferDTO);	
 	
 }
