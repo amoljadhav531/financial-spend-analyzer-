@@ -21,7 +21,7 @@ public class TransactionController {
 	private TransactionHistoryService transactionHistoryService;
 	
 	@GetMapping("/monthlyhistory/{customerId}/{month}")
-	public ResponseEntity<?> getMonthlyStatement(@PathVariable("customerId") @NotNull Long customerId, @PathVariable("month") @NotNull String monthAndYear){
-		return new ResponseEntity<MonthlyStatementDto>(transactionHistoryService.getMonthlyStatement(customerId, monthAndYear), HttpStatus.ACCEPTED);
+	public ResponseEntity<MonthlyStatementDto> getMonthlyStatement(@PathVariable("customerId") @NotNull Long customerId, @PathVariable("month") @NotNull String monthAndYear){
+		return new ResponseEntity<>(transactionHistoryService.getMonthlyStatement(customerId, monthAndYear), HttpStatus.ACCEPTED);
 	}
 }

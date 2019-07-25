@@ -24,7 +24,7 @@ public class CustomerDetails {
 	
 	private LocalDate dob;
 	
-	private String mobile_number;
+	private String mobileNumber;
 	
 	private String email;
 	
