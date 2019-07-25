@@ -8,5 +8,5 @@ import com.hcl.analyzer.entity.CustomerDetails;
 
 @Repository
 public interface CustomerDetailsRepository extends JpaRepository<CustomerDetails,Long >{
-
+	public CustomerDetails findByCustomerId(long customerId);
 }

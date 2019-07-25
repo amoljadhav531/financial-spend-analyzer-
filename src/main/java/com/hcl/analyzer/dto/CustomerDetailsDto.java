@@ -2,8 +2,6 @@ package com.hcl.analyzer.dto;
 
 import java.time.LocalDate;
 
-import org.springframework.web.bind.annotation.RestController;
-
 import lombok.Data;
 
 @Data
