@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.analyzer.dto.CustomerDetailsDto;
 import com.hcl.analyzer.entity.CustomerDetails;
+import com.hcl.analyzer.exception.ResourceNotFoundException;
 import com.hcl.analyzer.repository.CustomerDetailsRepository;
+
 
 @Service
 public class CustomerDetailsService {
@@ -17,7 +19,9 @@ public class CustomerDetailsService {
 	{
 		
 		CustomerDetails customerDetails=new CustomerDetails();
-		
+
+		if (null != customerDetails)
+		{
 		customerDetails.setAccountBalance(0.00);
 		customerDetails.setCustomerName(customerDetailsDto.getCustomerName());
 		customerDetails.setDob(customerDetailsDto.getDob());
@@ -27,6 +31,14 @@ public class CustomerDetailsService {
 		customerDetails.setPanNumber(customerDetailsDto.getPanNumber());
 		
 		return customerDetailsRepository.save(customerDetails);
+		
+			
+		}
+		else
+		{
+		throw new ResourceNotFoundException("All Fields Are mandatory");
+		
+		}
 		
 	}
 

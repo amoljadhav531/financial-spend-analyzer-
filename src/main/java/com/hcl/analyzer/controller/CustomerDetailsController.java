@@ -1,6 +1,8 @@
 package com.hcl.analyzer.controller;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ public class CustomerDetailsController {
 	
 
 	@PostMapping("customer/registration")
-	public ResponseEntity<CustomerDetails> addCustomer(@RequestBody CustomerDetailsDto customerDetailsDto) {
+	public ResponseEntity<CustomerDetails> addCustomer(@Valid @RequestBody CustomerDetailsDto customerDetailsDto) {
 		log.info("Creating new user profile " +customerDetailsDto.getCustomerName());
 		return new ResponseEntity<>(customerDetailsService.addCustomer(customerDetailsDto), HttpStatus.OK);
 
