@@ -60,7 +60,7 @@ public class TransactionHistoryImplTest {
 
 		Mockito.when(transactionDetailRepository.findByCustomerDetails(1L)).thenReturn(transactionDetails2);
 		List<TransactionDetail> transactionDetails = transactionHistoryImpl.getTransactionHistory(1L);
-		assertNotNull(transactionDetails);		
+		assertNotNull(transactionDetails);
 
 	}
 
