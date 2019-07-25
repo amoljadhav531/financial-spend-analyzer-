@@ -1,6 +1,11 @@
 package com.hcl.analyzer.service;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -13,33 +18,40 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.hcl.analyzer.dto.FundTransferDTO;
-import com.hcl.analyzer.dto.ResponseData;
 import com.hcl.analyzer.entity.CustomerDetails;
 import com.hcl.analyzer.entity.TransactionDetail;
+import com.hcl.analyzer.event.TransectionEvent;
 import com.hcl.analyzer.repository.CustomerDetailsRepository;
 import com.hcl.analyzer.repository.TransactionDetailRepository;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class FundTransferServiceImplTest {
 
-	FundTransferDTO fundTransferDTO;
-	CustomerDetails customerDetails;
-	TransactionDetail transactionDetail;
-	List<TransactionDetail> list;
+	private FundTransferDTO fundTransferDTO;
+	private CustomerDetails customerDetails;
+	private TransactionDetail transactionDetail;
+	private List<TransactionDetail> list;
 	
 	@Mock
-	CustomerDetailsRepository customerDetailsRepository;
+	private CustomerDetailsRepository customerDetailsRepository;
 	
 	@Mock
-	TransactionDetailRepository transactionDetailRepository;
+	private TransactionDetailRepository transactionDetailRepository;
+	
+	@Mock
+	private ApplicationEventPublisher applicationEventPublisher;
+	
 	
 	@InjectMocks
 	FundTransferServiceImpl fundTransferServiceImpl;
+	
 	
 	@Before
 	public void setUp() throws Exception {
@@ -73,7 +85,6 @@ public class FundTransferServiceImplTest {
 		customerDetails.setMobileNumber("9422390512");
 		customerDetails.setPanNumber("EHMPK0232F");
 		customerDetails.setTransactionDetails(list);
-		
 	}
 
 	@Test
@@ -81,9 +92,12 @@ public class FundTransferServiceImplTest {
 		Mockito.when(customerDetailsRepository.findByCustomerId(1L)).thenReturn(customerDetails);
 		Mockito.when(transactionDetailRepository.save(transactionDetail)).thenReturn(transactionDetail);
 		
-		ResponseData actual = fundTransferServiceImpl.fundTransfer(fundTransferDTO);
+		TransectionEvent data = mock(TransectionEvent.class);
+		doNothing().when(applicationEventPublisher).publishEvent(data);
 		
-		assertEquals("OTP is being sent on your mobile number and on email id", actual.getMessage());
+		fundTransferServiceImpl.fundTransfer(fundTransferDTO);
+		
+		assertTrue(true);
 	}
 
 }
