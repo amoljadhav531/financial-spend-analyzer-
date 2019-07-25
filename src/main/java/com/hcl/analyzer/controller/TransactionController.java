@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/finance")
+@RequestMapping("/transaction")
 public class TransactionController {
 	
-	@GetMapping("/transaction/monthlyhistory")
+	@GetMapping("/monthlyhistory")
 	public ResponseEntity<?> getMonthlyStatement(@PathVariable Long customerId, @PathVariable String month){
 		
 		return null;

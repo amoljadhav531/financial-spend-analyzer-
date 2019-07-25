@@ -21,6 +21,7 @@ public class TransactionHistoryServiceImpl implements TransactionHistoryService 
 	public List<TransactionDetail> getMonthlyStatement(Long customerId, String month) {
 		Optional<CustomerDetails> customerDetails = customerDetailsRepository.findById(customerId);
 		if (customerDetails.isPresent()) {
+			
 
 		}
 		throw new ResourceNotFoundException("Invalid Customer Id");
