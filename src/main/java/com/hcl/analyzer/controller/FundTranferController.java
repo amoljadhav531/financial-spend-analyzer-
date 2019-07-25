@@ -17,7 +17,7 @@ public class FundTranferController {
 	
 	 
 	@PostMapping("/transfer") 
-	public ResponseEntity<String> fundTransfer(FundTransferDTO fundTransferDTO) {
+	public ResponseEntity<Object> fundTransfer(FundTransferDTO fundTransferDTO) {
 	   return new ResponseEntity<>(fundTransferService.fundTransfer(fundTransferDTO), HttpStatus.OK);
 	}
 
