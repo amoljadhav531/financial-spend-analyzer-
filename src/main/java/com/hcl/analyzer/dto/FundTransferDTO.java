@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FundTransferDTO {
 
-	private String customerId;
+	private long customerId;
 	private String transactionType;
 	private Double transferAmount;
 	private String transactionDescription;
