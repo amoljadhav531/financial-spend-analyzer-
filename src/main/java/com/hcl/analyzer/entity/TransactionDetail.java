@@ -30,4 +30,6 @@ public class TransactionDetail {
 	private Integer transactionOtp;
 	
 	private Double availableBalance;
+	
+	private String transactionDescription;
 }
