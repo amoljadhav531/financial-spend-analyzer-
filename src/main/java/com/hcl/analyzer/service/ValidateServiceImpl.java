@@ -29,8 +29,8 @@ public class ValidateServiceImpl implements ValidateService {
 	@Autowired
 	private TransactionDetailRepository transactionDetailRepository;
 
-	private static final String ACCOUNT_SID = "ACf73ecdd409fb";
-	private static final String AUTH_ID = "d099b8077232a1";
+	private static final String ACCOUNT_SID = "ACf73ecdd409fbbd7f4662253cd08f9e0b";
+	private static final String AUTH_ID = "d099b8077232a16999136f93f243e697";
 
 	static {
 		Twilio.init(ACCOUNT_SID, AUTH_ID);
@@ -75,7 +75,7 @@ public class ValidateServiceImpl implements ValidateService {
 			helper.setSubject("Bank OTP Notification");
 			sender.send(message);
 
-			Message.creator(new PhoneNumber("+91" + transactionDetail.getCustomerDetails().getMobileNumber()), new PhoneNumber("FROM Number"), msg).create();
+			Message.creator(new PhoneNumber("+91" + transactionDetail.getCustomerDetails().getMobileNumber()), new PhoneNumber("+12028757297"), msg).create();
 		} catch (Exception e) {
 			log.error("Error: "+ e);
 		}
