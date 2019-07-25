@@ -3,7 +3,6 @@ package com.hcl.analyzer.service;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.config.CustomRepositoryImplementationDetector;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 

@@ -11,7 +11,7 @@ private String customerName;
 	
 	private LocalDate dob;
 	
-	private String mobile_number;
+	private String mobileNumber;
 	
 	private String email;
 	

@@ -17,7 +17,10 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ValidateServiceImpl implements ValidateService {
 
 	@Autowired
@@ -26,8 +29,8 @@ public class ValidateServiceImpl implements ValidateService {
 	@Autowired
 	private TransactionDetailRepository transactionDetailRepository;
 
-	private final static String ACCOUNT_SID = "ACf73ecdd409fb";
-	private final static String AUTH_ID = "d099b8077232a1";
+	private static final String ACCOUNT_SID = "ACf73ecdd409fb";
+	private static final String AUTH_ID = "d099b8077232a1";
 
 	static {
 		Twilio.init(ACCOUNT_SID, AUTH_ID);
@@ -72,9 +75,9 @@ public class ValidateServiceImpl implements ValidateService {
 			helper.setSubject("Bank OTP Notification");
 			sender.send(message);
 
-			Message.creator(new PhoneNumber("+91" + transactionDetail.getCustomerDetails().getMobile_number()), new PhoneNumber("FROM Number"), msg).create();
+			Message.creator(new PhoneNumber("+91" + transactionDetail.getCustomerDetails().getMobileNumber()), new PhoneNumber("FROM Number"), msg).create();
 		} catch (Exception e) {
-			System.out.println(e);
+			log.error("Error: "+ e);
 		}
 	}
 

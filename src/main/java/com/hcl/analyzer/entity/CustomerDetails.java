@@ -30,8 +30,12 @@ public class CustomerDetails {
 	
 	private LocalDate dob;
 	
+<<<<<<< HEAD
 	
 	private String mobile_number;
+=======
+	private String mobileNumber;
+>>>>>>> 9ca522bf46f7a84af653cc1ac036899672bee745
 	
 	private String email;
 	

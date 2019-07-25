@@ -13,6 +13,6 @@ public class MonthlyStatementDto {
 
 	private Double totalOutgoing;
 
-	private Double ClosingBalance;
+	private Double closingBalance;
 
 }

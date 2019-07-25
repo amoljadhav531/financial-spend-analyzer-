@@ -39,7 +39,7 @@ public class CustomerDetailsService {
 		customerDetails.setDob(customerDetailsDto.getDob());
 		customerDetails.setEmail(customerDetailsDto.getEmail());
 		customerDetails.setGender(customerDetailsDto.getGender());
-		customerDetails.setMobile_number(customerDetailsDto.getMobile_number());
+		customerDetails.setMobileNumber(customerDetailsDto.getMobileNumber());
 		customerDetails.setPanNumber(customerDetailsDto.getPanNumber());
 		
 		return customerDetailsRepository.save(customerDetails);
