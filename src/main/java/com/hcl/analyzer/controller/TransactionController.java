@@ -1,5 +1,7 @@
 package com.hcl.analyzer.controller;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class TransactionController {
 	private TransactionHistoryService transactionHistoryService;
 	
 	@GetMapping("/monthlyhistory/{customerId}/{month}")
-	public ResponseEntity<MonthlyStatementDto> getMonthlyStatement(@PathVariable("customerId") @NotNull Long customerId, @PathVariable("month") @NotNull String monthAndYear){
+	public ResponseEntity<List<MonthlyStatementDto>> getMonthlyStatement(@PathVariable("customerId") @NotNull Long customerId, @PathVariable("month") @NotNull String monthAndYear){
 		return new ResponseEntity<>(transactionHistoryService.getMonthlyStatement(customerId, monthAndYear), HttpStatus.ACCEPTED);
 	}
 }
