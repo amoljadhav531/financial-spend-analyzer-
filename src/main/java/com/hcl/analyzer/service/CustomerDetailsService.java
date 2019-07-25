@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.hcl.analyzer.dto.CustomerDetailsDto;
 import com.hcl.analyzer.entity.CustomerDetails;
 import com.hcl.analyzer.exception.InvalidInputException;
-import com.hcl.analyzer.exception.ResourceNotFoundException;
 import com.hcl.analyzer.repository.CustomerDetailsRepository;
 
 
