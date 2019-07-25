@@ -30,6 +30,9 @@ public class FundTransferServiceImpl implements FundTransferService {
 		
 		CustomerDetails customerDetails = customerDetailsRepository.findByCustomerId(fundTransferDTO.getCustomerId());
 		
+		if(null==customerDetails)
+			throw new ResourceNotFoundException("Customer id: "+fundTransferDTO.getCustomerId()+" is not found. Please enter the valid Customer Id");
+		
 		if(fundTransferDTO.getTransactionType().equalsIgnoreCase("CREDIT")) {
 			transactionDetail.setAvailableBalance(customerDetails.getAccountBalance()+fundTransferDTO.getTransferAmount());
 			customerDetails.setAccountBalance(customerDetails.getAccountBalance()+fundTransferDTO.getTransferAmount());
@@ -45,6 +48,9 @@ public class FundTransferServiceImpl implements FundTransferService {
 						transactionDetail.setAvailableBalance(customerDetails.getAccountBalance()-fundTransferDTO.getTransferAmount());
 						customerDetails.setAccountBalance(customerDetails.getAccountBalance()-fundTransferDTO.getTransferAmount());
 					}
+			else
+				throw new ResourceNotFoundException("Please enter valid transaction type (CREDIT/DEBIT).");
+		
 		transactionDetail.setTransactionAmount(fundTransferDTO.getTransferAmount());
 		transactionDetail.setTransactionDate(LocalDate.now());
 		transactionDetail.setCustomerDetails(customerDetails);
