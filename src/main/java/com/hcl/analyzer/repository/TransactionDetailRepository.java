@@ -14,7 +14,7 @@ import com.hcl.analyzer.entity.TransactionDetail;
 @Repository
 public interface TransactionDetailRepository extends JpaRepository<TransactionDetail, Long> {	
 	
-	@Query("select new com.hcl.analyzer.entity.MonthyStatement(SUM(t.transactionAmount) , MONTH(t.transactionDate), MAX(t.availableBalance)) from TransactionDetail t where t.customerDetails=:customerId AND t.transactionType=:transactionType group by MONTH(t.transactionDate)")
+	@Query("select new com.hcl.analyzer.dto.MonthyStatement(SUM(t.transactionAmount) , MONTH(t.transactionDate), MAX(t.availableBalance)) from TransactionDetail t where t.customerDetails=:customerId AND t.transactionType=:transactionType group by MONTH(t.transactionDate)")
 	public List<MonthyStatement> findByMonthAndYear(@Param("customerId") CustomerDetails customerId, @Param("transactionType") String transactionType);
 	
 	@Query(value = "SELECT * FROM transaction_detail  WHERE customer_id = :customer", nativeQuery = true)
