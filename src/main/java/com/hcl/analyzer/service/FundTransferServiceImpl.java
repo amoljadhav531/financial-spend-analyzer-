@@ -68,7 +68,7 @@ public class FundTransferServiceImpl implements FundTransferService {
 		transactionDetail.setTransactionDescription(fundTransferDTO.getTransactionDescription());
 
 		TransactionDetail details = transactionDetailRepository.save(transactionDetail);
-		//applicationEventPublisher.publishEvent(new TransectionEvent(details));
+		applicationEventPublisher.publishEvent(new TransectionEvent(details));
 
 		ResponseData responseData = new ResponseData();
 		responseData.setHttpStatus(HttpStatus.OK);
