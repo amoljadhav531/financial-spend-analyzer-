@@ -1,11 +1,9 @@
 package com.hcl.analyzer.service;
 
-import java.util.List;
-
-import com.hcl.analyzer.entity.TransactionDetail;
+import com.hcl.analyzer.dto.MonthlyStatementDto;
 
 public interface TransactionHistoryService {
 	
-	public List<TransactionDetail> getMonthlyStatement(Long customerId, String month);
+	public MonthlyStatementDto getMonthlyStatement(Long customerId, String month);
 
 }
