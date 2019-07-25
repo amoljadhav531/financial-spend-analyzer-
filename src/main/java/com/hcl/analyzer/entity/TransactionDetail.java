@@ -27,7 +27,7 @@ public class TransactionDetail {
 	
 	private String transactionStatus;
 	
-	private String transactionOtp;
+	private Integer transactionOtp;
 	
 	private Double availableBalance;
 }
