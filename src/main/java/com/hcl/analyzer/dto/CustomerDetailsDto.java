@@ -19,6 +19,6 @@ private String customerName;
 	
 	private String panNumber;
 	
-	private double accountBalance;
+	
 	
 }
