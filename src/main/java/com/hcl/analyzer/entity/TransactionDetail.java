@@ -18,7 +18,7 @@ public class TransactionDetail {
 	private Long transactionId;
 	
 	private String customerId;
-	
+
 	private LocalDate transactionDate;
 	
 	private String transactionType;

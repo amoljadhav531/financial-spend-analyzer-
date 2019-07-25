@@ -30,4 +30,5 @@ public class CustomerDetails {
 	private String panNumber;
 	
 	private double accountBalance;
+	
 }
