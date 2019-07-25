@@ -25,11 +25,7 @@ public class TransactionHistoryServiceImpl implements TransactionHistoryService 
 	private TransactionDetailRepository transactionDetailRepository;
 
 	@Override
-	public List<MonthlyStatementDto> getMonthlyStatement(Long customerId, String month) {
-		String[] splitMonth = month.split("-");
-		if (splitMonth.length != 2 && !splitMonth[0].matches("0[0-9]|1[0-2]") && !splitMonth[1].matches("\\d{4}")) {
-			throw new InvalidInputException("Invalid Month & Year. Please provide input in mentioned format: 02-2019");
-		}
+	public List<MonthlyStatementDto> getMonthlyStatement(Long customerId) {
 		Optional<CustomerDetails> customerDetails = customerDetailsRepository.findById(customerId);
 		if (customerDetails.isPresent()) {
 			List<MonthyStatement> creditList = transactionDetailRepository.findByMonthAndYear(customerDetails.get(),
