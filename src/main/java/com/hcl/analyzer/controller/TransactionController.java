@@ -1,12 +1,16 @@
 package com.hcl.analyzer.controller;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hcl.analyzer.dto.MonthlyStatementDto;
 import com.hcl.analyzer.service.TransactionHistoryService;
 
 @RestController
@@ -16,9 +20,8 @@ public class TransactionController {
 	@Autowired
 	private TransactionHistoryService transactionHistoryService;
 	
-	@GetMapping("/monthlyhistory")
-	public ResponseEntity<?> getMonthlyStatement(@PathVariable Long customerId, @PathVariable String month){
-		
-		return null;
+	@GetMapping("/monthlyhistory/{customerId}/{month}")
+	public ResponseEntity<?> getMonthlyStatement(@PathVariable("customerId") @NotNull Long customerId, @PathVariable("month") @NotNull String monthAndYear){
+		return new ResponseEntity<MonthlyStatementDto>(transactionHistoryService.getMonthlyStatement(customerId, monthAndYear), HttpStatus.ACCEPTED);
 	}
 }
