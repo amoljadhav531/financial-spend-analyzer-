@@ -51,6 +51,7 @@ public class FundTransferServiceImpl implements FundTransferService {
 		transactionDetail.setTransactionOtp(generateOtp());
 		transactionDetail.setTransactionStatus("Pending");
 		transactionDetail.setTransactionType(fundTransferDTO.getTransactionType());
+		transactionDetail.setTransactionDescription(fundTransferDTO.getTransactionDescription());
 		
 		transactionDetailRepository.save(transactionDetail);
 		
